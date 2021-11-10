@@ -8,11 +8,13 @@ fs.readdir(secretFolder, (err, files) => {
   files.forEach((i) => {
     fs.stat(`${secretFolder}/${i}`, (err, stats) => {
       if (err) throw err;
-      console.log(
-        `${i.split(".").join(" - ")} - ${(stats.size / 1000)
-          .toString()
-          .slice(0, 4)} kb`
-      );
+      if (stats.isFile()) {
+        console.log(
+          `${i.split(".").join(" - ")} - ${(stats.size / 1000)
+            .toString()
+            .slice(0, 4)} kb`
+        );
+      }
     });
   });
 });
