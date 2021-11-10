@@ -1,7 +1,10 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
-fs.readFile(path.join(__dirname,'./text.txt'), 'utf8', (error, data) => {
-  if (error) throw error;
-  console.log(data);
-});
+fs.ReadStream(path.join(__dirname, "./text.txt"), "utf8").on(
+  "data",
+  (data, err) => {
+    if (err) throw err;
+    console.log(data);
+  }
+);
